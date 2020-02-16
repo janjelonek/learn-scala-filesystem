@@ -1,5 +1,7 @@
 package files
 
+import filesystem.FilesystemException
+
 import scala.annotation.tailrec
 
 class Directory(override val parentPath: String, override val name: String, val contents: List[DirEntry])
@@ -43,7 +45,7 @@ class Directory(override val parentPath: String, override val name: String, val 
   def isRoot: Boolean = parentPath.isEmpty
 
   def asDirectory: Directory = this
-  def asFile: Directory = throw new FilesystemException("A directory cannot be converted to a file!")
+  def asFile: File = throw new FilesystemException("A directory cannot be converted to a file!")
 
   def isDirectory: Boolean = true
   def isFile: Boolean = false
